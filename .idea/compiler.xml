@@ -21,12 +21,22 @@
         </processorPath>
         <module name="spring-bookapp-jpa" />
       </profile>
+      <profile name="Annotation profile for spring-bookapp-restjpa" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="spring-bookapp-restjpa" />
+      </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="sping-boot-restapi" options="-parameters" />
       <module name="spring-bookapp-jpa" options="-parameters" />
+      <module name="spring-bookapp-restjpa" options="-parameters" />
       <module name="spring-boot-basic" options="-parameters" />
       <module name="spring-boot-mvc" options="-parameters" />
     </option>
