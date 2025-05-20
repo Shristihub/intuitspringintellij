@@ -6,6 +6,8 @@
       <list>
         <option value="$PROJECT_DIR$/spring-boot-basic/pom.xml" />
         <option value="$PROJECT_DIR$/spring-bookapp-jpa/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-mvc/pom.xml" />
+        <option value="$PROJECT_DIR$/sping-boot-restapi/pom.xml" />
       </list>
     </option>
   </component>
