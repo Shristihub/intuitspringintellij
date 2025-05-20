@@ -3,12 +3,9 @@ package com.bookapp.service;
 import com.bookapp.model.Book;
 import com.bookapp.repository.IBookRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -53,21 +50,30 @@ public class BookServiceImpl implements IBookService{
 
     @Override
     public List<Book> getByLesserPrice(double price) {
-        return List.of();
+
+        return bookRepository.findByPriceLessThanEqual(price);
     }
 
     @Override
-    public List<Book> getByBrand(String brand) {
-        return List.of();
+    public List<Book> getByCategory(String category) {
+
+        return bookRepository.findByCategory(category);
     }
 
     @Override
     public List<Book> getByCategoryLessPrice(String category, double price) {
-        return List.of();
+
+        return bookRepository.findByCatLessPrice(category, price);
+    }
+
+    @Override
+    public List<Book> getByCategoryPrice(String category, double price) {
+
+        return bookRepository.findByCatPrice(category, price);
     }
 
     @Override
     public List<Book> getByTitleContains(String choice) {
-        return List.of();
+        return bookRepository.findByTitleContains(choice);
     }
 }

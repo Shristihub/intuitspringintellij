@@ -12,8 +12,13 @@ public interface IBookService {
     List<Book> getBooks();
     Book getById(int bookId);
 
+     // derived
     List<Book> getByLesserPrice(double price);
-    List<Book> getByBrand(String brand);
+    List<Book> getByCategory(String category);
+    //custom query
     List<Book> getByCategoryLessPrice(String category, double price);
+
+    //native query
+    List<Book> getByCategoryPrice(String category,double price);
     List<Book> getByTitleContains(String choice);
 }
