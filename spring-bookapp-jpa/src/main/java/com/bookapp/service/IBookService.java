@@ -6,11 +6,14 @@ import java.util.List;
 
 public interface IBookService {
     //CRUD OPERATION
-    addBook(Book book);
-
-
-
+    Book addBook(Book book);
+    Book updateBook(Book book);
+    void deleteById(int bookId);
     List<Book> getBooks();
-    Book getBookById(int id);
+    Book getById(int bookId);
+
     List<Book> getByLesserPrice(double price);
+    List<Book> getByBrand(String brand);
+    List<Book> getByCategoryLessPrice(String category, double price);
+    List<Book> getByTitleContains(String choice);
 }
