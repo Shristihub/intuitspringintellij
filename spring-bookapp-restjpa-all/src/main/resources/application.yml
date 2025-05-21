@@ -11,6 +11,10 @@ spring:
       ddl-auto: update
   application:
     name: book-api
+  security:
+    user:
+      name: priya
+      password: priya123
 server:
   port: 8081
 management:
