@@ -1,5 +1,6 @@
 package com.bookapp.service;
 
+import com.bookapp.exceptions.BookNotFoundException;
 import com.bookapp.model.Book;
 import com.bookapp.model.BookDto;
 
@@ -11,11 +12,11 @@ public interface IBookService {
     BookDto updateBook(BookDto book);
     void deleteById(int bookId);
     List<BookDto> getBooks();
-    BookDto getById(int bookId);
+    BookDto getById(int bookId) throws BookNotFoundException;
 
      // derived
-    List<BookDto> getByLesserPrice(double price);
-    List<BookDto> getByCategory(String category);
+    List<BookDto> getByLesserPrice(double price) throws BookNotFoundException;
+    List<BookDto> getByCategory(String category) throws BookNotFoundException;
     //custom query
     List<BookDto> getByCategoryLessPrice(String category, double price);
 

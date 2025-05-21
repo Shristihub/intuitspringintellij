@@ -1,5 +1,6 @@
 package com.bookapp.service;
 
+import com.bookapp.exceptions.BookNotFoundException;
 import com.bookapp.model.Book;
 import com.bookapp.model.BookDto;
 import com.bookapp.repository.IBookRepository;
@@ -50,20 +51,23 @@ public class BookServiceImpl implements IBookService {
     @Override
     public BookDto getById(int bookId) {
         Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new RuntimeException("invalid id"));
+                .orElseThrow(() -> new BookNotFoundException("invalid id"));
         return mapper.map(book, BookDto.class);
     }
 
     @Override
     public List<BookDto> getByLesserPrice(double price) {
         List<Book> books = bookRepository.findByPriceLessThanEqual(price);
+        if(books.isEmpty())
+            throw new BookNotFoundException("No book found with price less than or equal to "+price);
         return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
     }
 
     @Override
     public List<BookDto> getByCategory(String category) {
-
         List<Book> books = bookRepository.findByCategory(category);
+        if(books.isEmpty())
+            throw new BookNotFoundException("No book found ");
         return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
     }
 
