@@ -54,7 +54,7 @@ public class BookController {
     }
 
     //    http://localhost:8081/book-api/v1/books/bookId/103
-    @GetMapping("/books/bookId/{Id}")
+    @GetMapping("/books/bookId/{bookId}")
     ResponseEntity<BookDto> getById(@PathVariable int bookId) {
         BookDto bookDto = bookService.getById(bookId);
         HttpHeaders headers = new HttpHeaders();
