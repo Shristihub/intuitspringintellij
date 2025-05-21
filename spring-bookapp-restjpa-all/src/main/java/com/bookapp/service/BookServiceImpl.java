@@ -1,29 +1,38 @@
 package com.bookapp.service;
 
 import com.bookapp.model.Book;
+import com.bookapp.model.BookDto;
 import com.bookapp.repository.IBookRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class BookServiceImpl implements IBookService{
+public class BookServiceImpl implements IBookService {
 
     private final IBookRepository bookRepository;
+    @Autowired
+    private ModelMapper mapper;
 
     @Override
-    public Book addBook(Book book) {
-        return bookRepository.save(book);
+    public BookDto addBook(BookDto bookDto) {
+        //object of model mapper to covert dto object to entity
+        Book book = mapper.map(bookDto, Book.class);
+        Book savedBook = bookRepository.save(book);
+        // convert entity back to dto
+        return mapper.map(savedBook, BookDto.class);
     }
 
     @Override
-    public Book updateBook(Book book) {
-        //check if bookId exists in database
-        // if available update the record
-        // if not insert it as a new record
-        return bookRepository.save(book);
+    public BookDto updateBook(BookDto bookDto) {
+        Book book = mapper.map(bookDto, Book.class);
+        Book updatedBook = bookRepository.save(book);
+        // convert entity back to dto
+        return mapper.map(updatedBook, BookDto.class);
     }
 
     @Override
@@ -33,47 +42,48 @@ public class BookServiceImpl implements IBookService{
     }
 
     @Override
-    public List<Book> getBooks() {
-        return bookRepository.findAll();
+    public List<BookDto> getBooks() {
+        List<Book> books = bookRepository.findAll();
+        return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
     }
 
     @Override
-    public Book getById(int bookId) {
-//        Optional<Book> bookOpt =  bookRepository.findById(bookId);
-//        if(bookOpt.isPresent())
-//            return bookOpt.get();
-//        return null;
-        return bookRepository.findById(bookId)
-                .orElseThrow(()->new RuntimeException("invalid id"));
-
+    public BookDto getById(int bookId) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new RuntimeException("invalid id"));
+        return mapper.map(book, BookDto.class);
     }
 
     @Override
-    public List<Book> getByLesserPrice(double price) {
-
-        return bookRepository.findByPriceLessThanEqual(price);
+    public List<BookDto> getByLesserPrice(double price) {
+        List<Book> books = bookRepository.findByPriceLessThanEqual(price);
+        return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
     }
 
     @Override
-    public List<Book> getByCategory(String category) {
+    public List<BookDto> getByCategory(String category) {
 
-        return bookRepository.findByCategory(category);
+        List<Book> books = bookRepository.findByCategory(category);
+        return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
     }
 
     @Override
-    public List<Book> getByCategoryLessPrice(String category, double price) {
+    public List<BookDto> getByCategoryLessPrice(String category, double price) {
 
-        return bookRepository.findByCatLessPrice(category, price);
+        List<Book> books = bookRepository.findByCatLessPrice(category, price);
+        return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
     }
 
     @Override
-    public List<Book> getByCategoryPrice(String category, double price) {
+    public List<BookDto> getByCategoryPrice(String category, double price) {
 
-        return bookRepository.findByCatPrice(category, price);
+        List<Book> books = bookRepository.findByCatPrice(category, price);
+        return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
     }
 
     @Override
-    public List<Book> getByTitleContains(String choice) {
-        return bookRepository.findByTitleContains(choice);
+    public List<BookDto> getByTitleContains(String choice) {
+        List<Book> books = bookRepository.findByTitleContains(choice);
+        return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
     }
 }

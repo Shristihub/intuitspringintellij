@@ -1,24 +1,25 @@
 package com.bookapp.service;
 
 import com.bookapp.model.Book;
+import com.bookapp.model.BookDto;
 
 import java.util.List;
 
 public interface IBookService {
     //CRUD OPERATION
-    Book addBook(Book book);
-    Book updateBook(Book book);
+    BookDto addBook(BookDto book);
+    BookDto updateBook(BookDto book);
     void deleteById(int bookId);
-    List<Book> getBooks();
-    Book getById(int bookId);
+    List<BookDto> getBooks();
+    BookDto getById(int bookId);
 
      // derived
-    List<Book> getByLesserPrice(double price);
-    List<Book> getByCategory(String category);
+    List<BookDto> getByLesserPrice(double price);
+    List<BookDto> getByCategory(String category);
     //custom query
-    List<Book> getByCategoryLessPrice(String category, double price);
+    List<BookDto> getByCategoryLessPrice(String category, double price);
 
     //native query
-    List<Book> getByCategoryPrice(String category,double price);
-    List<Book> getByTitleContains(String choice);
+    List<BookDto> getByCategoryPrice(String category,double price);
+    List<BookDto> getByTitleContains(String choice);
 }
