@@ -45,7 +45,7 @@ public class SecurityConfig {
         return http.authorizeHttpRequests(auth->{
             auth.requestMatchers("/user-api/v1/register").permitAll();
         })
-                .formLogin(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults())
                 .build();
 
 
