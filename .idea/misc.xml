@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/spring-boot-mvc/pom.xml" />
         <option value="$PROJECT_DIR$/sping-boot-restapi/pom.xml" />
         <option value="$PROJECT_DIR$/spring-bookapp-restjpa/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-bookapp-restjpa-all/pom.xml" />
       </list>
     </option>
   </component>
