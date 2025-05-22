@@ -29,8 +29,8 @@ public class ApiUserController {
           String password = encoder.encode(apiUser.getPassword());
           apiUser.setPassword(password);
           userService.createUser(apiUser);
-          return ResponseEntity.noContent().build();
-      }
+          return ResponseEntity.status(201).build();
+     }
 
 
 }

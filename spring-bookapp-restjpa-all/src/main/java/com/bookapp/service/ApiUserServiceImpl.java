@@ -56,7 +56,9 @@ public class ApiUserServiceImpl implements UserDetailsManager {
                 .orElseThrow(()->new UsernameNotFoundException("User not found"));
       String uname = user.getUsername();
       String password = user.getPassword();
+        System.out.println(user);
        UserDetails userDetails   = new User(uname,password,user.getAuthorities());
+        System.out.println(userDetails);
       return userDetails;
 
 

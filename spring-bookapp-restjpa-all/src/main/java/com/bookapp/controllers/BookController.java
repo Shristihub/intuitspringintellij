@@ -19,7 +19,7 @@ public class BookController {
     private IBookService bookService;
 
     //    http://localhost:8081/book-api/v1/books
-    @PostMapping("/books")
+    @PostMapping("/admin/books")
     ResponseEntity<BookDto> addBook(@RequestBody BookDto bookDto) {
         BookDto savedBook = bookService.addBook(bookDto);
         //add custom headers
@@ -31,7 +31,7 @@ public class BookController {
 
 
     //    http://localhost:8081/book-api/v1/books
-    @PutMapping("/books")
+    @PutMapping("/admin/books")
     ResponseEntity<BookDto>  updateBook(@RequestBody BookDto bookDto) {
         BookDto updatedBook = bookService.updateBook(bookDto);
         ResponseEntity<BookDto> responseEntity =
@@ -40,7 +40,7 @@ public class BookController {
     }
 
     //    http://localhost:8081/book-api/v1/books/bookId/103
-    @DeleteMapping("/books/bookId/{bookId}")
+    @DeleteMapping("/admin/books/bookId/{bookId}")
     ResponseEntity<Void> deleteById(int bookId) {
         bookService.deleteById(bookId);
         return ResponseEntity.noContent().build();
@@ -54,7 +54,7 @@ public class BookController {
     }
 
     //    http://localhost:8081/book-api/v1/books/bookId/103
-    @GetMapping("/books/bookId/{bookId}")
+    @GetMapping("/admin/books/bookId/{bookId}")
     ResponseEntity<BookDto> getById(@PathVariable int bookId) {
         BookDto bookDto = bookService.getById(bookId);
         HttpHeaders headers = new HttpHeaders();
